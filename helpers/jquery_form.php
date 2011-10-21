@@ -7,21 +7,21 @@
  *  @license Copyright 2009 Marc Grabanski under MIT
  */
 class JqueryFormHelper extends AppHelper {
-	
+
 	var $forms = array();
 	var $helpers = array('Javascript');
-	
+
 	/**
 	 * Writes the jQuery code that handles the AJAX
 	 */
 	function afterRender() {
-		
+
 		$forms = array();
 		foreach ($this->forms as $id) {
 			$forms[] = "#$id :input";
 		}
 		$forms = implode(', ', $forms);
-		
+
 		$js = <<<END
 		$(document).ready(function() {
 		   	$('$forms').change(function(){
@@ -59,7 +59,7 @@ class JqueryFormHelper extends AppHelper {
 END;
 		print $this->Javascript->codeBlock($js);
 	}
-	
+
 	/**
 	 * Creates a hidden form element that triggers AJAX validation by the associated component
 	 */
@@ -67,7 +67,7 @@ END;
 		$this->forms[] = $id;
 		return $this->output("<input type=\"hidden\" name=\"data[__validate]\" value=\"1\"");
 	}
-	
+
 }
 
 ?>

@@ -5,12 +5,12 @@
  *  @author Marc Grabanski <m@marcgrabanski.com>
  *  @author Jeff Loiselle <jeff@newnewmedia.com>
  *  @license Copyright 2009 Marc Grabanski under the MIT License
- */	
+ */
 class JqueryFormComponent extends Component {
-	
+
 	var $controller = null;
 	var $components = array('RequestHandler');
-	
+
 	/**
 	 * Runs validation if the incoming data requests to be validated and is AJAX
 	 */
@@ -22,12 +22,12 @@ class JqueryFormComponent extends Component {
 			$this->validate($this->controller->data);
 		}
 	}
-	
+
 	/**
 	 *  Returns a JSON encoded array of invalid fields for the models in the POST data
-	 */	
+	 */
 	function validate($data) {
-				
+
 		$validated = array();
 		foreach ($data as $model => $d) {
 			$class = ClassRegistry::init($model);
@@ -45,7 +45,7 @@ class JqueryFormComponent extends Component {
 		}
 		die(json_encode($output));
 	}
-	
+
 }
 
 ?>
